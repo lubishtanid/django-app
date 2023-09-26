@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Docker Login
       run: |
-        echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u lubishtanid --password-stdin
+        echo ${{ secrets.dockerhub_pat }} | docker login -u lubishtanid --password-stdin
     - uses: actions/checkout@v3
     - name: Build and push Docker image
       run: |
