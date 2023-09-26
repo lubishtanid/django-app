@@ -19,8 +19,8 @@ jobs:
         echo ${{ secrets.dockerhub_pat }} | docker login -u lubishtanid --password-stdin
     - uses: actions/checkout@v3
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag argocd-testing:$(date +%s)
+      run: docker build . --file Dockerfile --tag argocd-testing:latest
 
     - uses: actions/checkout@v3
     - name: Push Docker Image
-      run: docker push lubishtanid/argocd-testing:$(date +%s)
+      run: docker push lubishtanid/argocd-testing
