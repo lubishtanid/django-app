@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker Login
+      run: |
+        echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u lubishtanid --password-stdin
+    - uses: actions/checkout@v3
+    - name: Build and push Docker image
+      run: |
+        docker build . --file Dockerfile --tag lubishtanid/argocd-testing:$(date +%s)
+        docker push lubishtanid/argocd-testing:$(date +%s)
